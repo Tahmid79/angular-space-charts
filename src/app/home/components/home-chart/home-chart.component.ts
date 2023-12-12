@@ -12,6 +12,8 @@ import { HomeService } from '../../services/home.service';
   styleUrls: ['./home-chart.component.scss']
 })
 export class HomeChartComponent implements OnInit, OnDestroy{
+
+  @Input() yLimit = 100 ;
   
   constructor(private homeService: HomeService){}
 
@@ -27,15 +29,17 @@ export class HomeChartComponent implements OnInit, OnDestroy{
 
   public barChartOptions: ChartConfiguration['options'] = {
     // We use these empty structures as placeholders for dynamic theming.
+    responsive: true,
     scales: {
       x: {},
       y: {
-        // min: 10,
+        // min: -1.2 * (this.yLimit),
+        // max: 1.2 * (this.yLimit)
       },
     },
     plugins: {
       legend: {
-        display: true,
+        display: false,
       },
       datalabels: {
         anchor: 'end',

@@ -1,7 +1,10 @@
-<div>
-    <ng-container *ngFor="let data of chartDataArr">
+<div *ngIf="loading">
+    <h1>Loading</h1>
+</div>
+<div *ngIf="!loading" class="chart-container">
+    <ng-container *ngFor="let data of chartDataArr; index as idx">
         <div class="chart-holder">
-            <app-home-chart [barChartData]="data" ></app-home-chart>
+            <app-home-chart [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
         </div>
     </ng-container>
 </div>

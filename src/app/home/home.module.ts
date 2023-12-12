@@ -7,6 +7,7 @@ import { HomeChartComponent } from './components/home-chart/home-chart.component
 
 import { NgChartsModule } from 'ng2-charts';
 import { ChartHolderComponent } from './components/chart-holder/chart-holder.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ChartHolderComponent } from './components/chart-holder/chart-holder.com
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    FlexLayoutModule
   ]
 })
 export class HomeModule { }
