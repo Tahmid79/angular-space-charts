@@ -6,12 +6,14 @@ import { HomeDefaultComponent } from './components/home-default/home-default.com
 import { HomeChartComponent } from './components/home-chart/home-chart.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { ChartHolderComponent } from './components/chart-holder/chart-holder.component';
 
 
 @NgModule({
   declarations: [
     HomeDefaultComponent,
-    HomeChartComponent
+    HomeChartComponent,
+    ChartHolderComponent
   ],
   imports: [
     CommonModule,
