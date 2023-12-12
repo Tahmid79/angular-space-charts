@@ -1,9 +1,9 @@
 <div *ngIf="loading">
     <h1>Loading</h1>
 </div>
-<div *ngIf="!loading" class="chart-container">
-    <ng-container *ngFor="let data of chartDataArr; index as idx">
-        <div class="chart-holder">
+<div *ngIf="!loading" class="chart-container" >
+    <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout="row wrap">
+        <div fxFlex="30" class="chart-holder">
             <app-home-chart [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
         </div>
     </ng-container>

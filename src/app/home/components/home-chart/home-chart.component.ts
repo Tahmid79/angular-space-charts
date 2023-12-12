@@ -30,6 +30,7 @@ export class HomeChartComponent implements OnInit, OnDestroy{
   public barChartOptions: ChartConfiguration['options'] = {
     // We use these empty structures as placeholders for dynamic theming.
     responsive: true,
+    aspectRatio: 1,
     scales: {
       x: {},
       y: {
