@@ -8,13 +8,15 @@ import { HomeChartComponent } from './components/home-chart/home-chart.component
 import { NgChartsModule } from 'ng2-charts';
 import { ChartHolderComponent } from './components/chart-holder/chart-holder.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProgressiveChartComponent } from './components/progressive-chart/progressive-chart.component';
 
 
 @NgModule({
   declarations: [
     HomeDefaultComponent,
     HomeChartComponent,
-    ChartHolderComponent
+    ChartHolderComponent,
+    ProgressiveChartComponent
   ],
   imports: [
     CommonModule,
