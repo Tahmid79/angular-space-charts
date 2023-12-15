@@ -4,7 +4,7 @@
 
 <div *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
     
-    <div class="chart-container" >
+    <div class="chart-container mat-elevation-z3" >
         <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout="row wrap">
             <div fxFlex="30" class="chart-holder">
                 <app-home-chart (animationCompleteEvent)="handleChartLoad($event)" [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
@@ -18,12 +18,14 @@
         </div>
     </div>
 
-    <div class="boolean-container" fxLayout="row" fxLayoutAlign="space-between center" >
-        <div fxFlex="48">
-            {{ ascending ? 'Ascending' : 'Descending' }}
-        </div>
-        <div fxFlex="48">
-            {{ actionNeeded ? 'Action is needed' : 'No action needed' }}
+    <div class="boolean-container" >
+        <div class="boolean-holder" fxLayoutGap.gt-xs="10px" fxLayout="row wrap" fxLayoutAlign="center center">
+            <div class="mat-elevation-z3">
+                <p>{{ ascending ? 'Ascending' : 'Descending' }}</p>
+            </div>
+            <div class="mat-elevation-z3">
+                <p>{{ actionNeeded ? 'Action is needed' : 'No action needed' }}</p>
+            </div>
         </div>
     </div>
 </div>

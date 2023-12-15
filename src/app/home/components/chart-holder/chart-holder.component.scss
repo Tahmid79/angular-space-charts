@@ -12,7 +12,7 @@
     margin-bottom: 20px;
     display: flex;
     .status-box{
-        width: 80%;
+        width: fit-content;
         margin: auto;
         padding: 20px;
         text-align: center;
@@ -22,6 +22,30 @@
             margin: 0 !important;
             font-size: 22px;
             font-weight: bold;
+        }
+    }
+}
+
+.boolean-container{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+
+    .boolean-holder{
+        margin: auto;
+        div{
+            width: 180px !important;
+            width: 80%;
+            padding: 20px;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 4px;
+            p{
+                margin: 0 !important;
+                font-size: 22px;
+                font-weight: bold;
+            }
         }
     }
 }
