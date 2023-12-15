@@ -1,16 +1,30 @@
-<div *ngIf="loading">
+<div *ngIf="loading || chartsLoading">
     <h1>Loading</h1>
 </div>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
     
     <div class="chart-container" >
         <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout="row wrap">
             <div fxFlex="30" class="chart-holder">
-                <app-home-chart [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
+                <app-home-chart (animationCompleteEvent)="handleChartLoad($event)" [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
             </div>
         </ng-container>
     </div>
 
+    <div class="status-container">
+        <div class="status-box mat-elevation-z3">
+            <p>{{status}}</p>
+        </div>
+    </div>
+
+    <div class="boolean-container" fxLayout="row" fxLayoutAlign="space-between center" >
+        <div fxFlex="48">
+            {{ ascending ? 'Ascending' : 'Descending' }}
+        </div>
+        <div fxFlex="48">
+            {{ actionNeeded ? 'Action is needed' : 'No action needed' }}
+        </div>
+    </div>
 </div>
 

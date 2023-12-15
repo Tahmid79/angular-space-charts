@@ -5,3 +5,28 @@
 .chart-holder{
     margin: 30px;
 }
+
+.status-container{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    .status-box{
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 4px;
+        p{
+            margin: 0 !important;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
+}
+
+.isHidden{
+    opacity: 0;
+}
+

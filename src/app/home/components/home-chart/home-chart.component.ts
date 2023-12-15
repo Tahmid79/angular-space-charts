@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -12,8 +12,10 @@ import { HomeService } from '../../services/home.service';
   styleUrls: ['./home-chart.component.scss']
 })
 export class HomeChartComponent implements OnInit, OnDestroy{
+  @Input() chartLoaded = false;
 
   @Input() yLimit = 100 ;
+  @Output() animationCompleteEvent = new EventEmitter();
   
   constructor(private homeService: HomeService){}
 
@@ -47,6 +49,14 @@ export class HomeChartComponent implements OnInit, OnDestroy{
         align: 'end',
       },
     },
+    animation: {
+      onComplete: ({initial}) => {
+        if (initial){
+          this.chartLoaded = true;
+          this.animationCompleteEvent.emit(true);
+        }
+      }
+  }
   };
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [DataLabelsPlugin];

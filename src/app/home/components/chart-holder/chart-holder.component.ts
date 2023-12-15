@@ -9,9 +9,14 @@ import { HomeService } from '../../services/home.service';
 })
 export class ChartHolderComponent implements OnInit {
   loading = true;
+  chartsLoading = true;
+  renderedCount = 0;
 
   chartDataArr: any = [];
   limits: any = [];
+  status = '';
+  ascending = false;
+  actionNeeded = false;
 
   barChartData: ChartData<'bar'> = {
     labels: ['Content'],
@@ -72,11 +77,23 @@ export class ChartHolderComponent implements OnInit {
       const {velocity, altitude, temperature} = response ;
       this.createData(velocity, altitude, temperature);
       this.loading = false;
+
+      // get other data
+      this.status = response?.statusMessage;
     });
   }
 
   setMinmax(Velocity: number = 10, Altitude: number = 10, Temperature: number = 10){
     let values = [Velocity, Altitude, Temperature];
+  }
+
+  handleChartLoad(chartInitialized: boolean){
+    if(chartInitialized){
+      this.renderedCount++;
+    }
+    if(this.renderedCount === 3){
+      this.chartsLoading = false ;
+    }
   }
 
 
