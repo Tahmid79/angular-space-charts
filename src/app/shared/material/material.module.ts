@@ -23,6 +23,6 @@ const exports:any = [MatToolbarModule, MatButtonModule, MatIconModule, MatCardMo
   declarations: [],
   imports: [
     CommonModule
-  ], exports: []
+  ], exports: exports
 })
 export class MaterialModule { }

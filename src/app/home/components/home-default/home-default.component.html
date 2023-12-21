@@ -1,3 +1,15 @@
+<mat-toolbar class="toolbar" fxLayout="row">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <button mat-icon-button class="example-icon" routerLink="">
+        <span>A</span>
+      </button>
+      <button mat-icon-button class="example-icon" routerLink="line">
+        <span>B</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
 <div>
-    <app-chart-holder></app-chart-holder>
+    <!-- <app-chart-holder></app-chart-holder> -->
+    <router-outlet></router-outlet>
 </div>
