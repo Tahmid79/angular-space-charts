@@ -1,1 +1,18 @@
-<app-line-chart [data]="data" ></app-line-chart>
+<!-- <app-line-chart [data]="data" ></app-line-chart> -->
+
+
+<div class="chart-container mat-elevation-z3" fxLayout="row wrap" >
+
+    <div fxFlex="32" class="chart-holder">
+        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="velocityData" ></app-line-chart>
+    </div>
+
+    <div fxFlex="32" class="chart-holder">
+        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="altitudeData" ></app-line-chart>
+    </div>
+
+    <div fxFlex="32" class="chart-holder">
+        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="temperatureData" ></app-line-chart>
+    </div>
+    
+</div>

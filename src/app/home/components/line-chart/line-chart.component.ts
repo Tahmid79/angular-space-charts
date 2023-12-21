@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, Input } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -13,6 +13,7 @@ export class LineChartComponent implements OnInit, OnChanges {
 
   @Input() data = [];
   @Input() labels = [];
+  @Output() animationCompleteEvent = new EventEmitter();
 
   private newLabel? = 'New label';
 
@@ -91,6 +92,8 @@ export class LineChartComponent implements OnInit, OnChanges {
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    aspectRatio: 1,
     elements: {
       line: {
         tension: 0.5,
