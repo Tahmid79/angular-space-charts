@@ -5,8 +5,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { LineChartHolderComponent } from './components/line-chart-holder/line-chart-holder.component';
 
 const routes: Routes = [
-  // { path: '', component: HomeDefaultComponent },
-  { path: '', component: LineChartHolderComponent }
+  { path: '', component: HomeDefaultComponent },
+  { path: 'line', component: LineChartHolderComponent }
 ];
 
 @NgModule({

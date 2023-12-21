@@ -13,12 +13,9 @@ export class LineChartHolderComponent implements OnInit {
   temperatureData: any = [];
 
   labels: any = [];
-
   count = 0 ;
 
   constructor(){}
-
-  dataArr: any = [];
 
   ngOnInit(): void {
     this.showData();
@@ -31,22 +28,8 @@ export class LineChartHolderComponent implements OnInit {
     subject.subscribe(
       (msg: any) => {
         console.log('message received: ' + msg);
-        const strData = JSON.stringify(msg);
-        this.dataArr.push(strData);
-
         this.prepareData(msg);
 
-        // const dataObj = {value: msg.Velocity , label: `${this.count}s`};
-        // this.count += 0.5;
-        // this.data.push(dataObj);
-        
-        // if(this.data.length > 30){
-        //   for(let i = 1 ; i < 20 ; i++){
-        //     this.data.shift();
-        //   }
-        // }
-
-        // this.data = this.data.map( (item: any) => item);
       }, // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('complete') // Called when connection is closed (for whatever reason).
@@ -84,7 +67,7 @@ export class LineChartHolderComponent implements OnInit {
       if(prop === 'Temperature'){
         this.temperatureData = array;
       }
-      
+
     });
 
     this.count += 0.5;
