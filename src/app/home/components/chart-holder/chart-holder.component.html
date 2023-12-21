@@ -1,5 +1,6 @@
-<div *ngIf="loading || chartsLoading">
-    <h1>Loading</h1>
+<div class="loader-container" *ngIf="loading || chartsLoading">
+    <!-- <h1>Loading</h1> -->
+    <mat-spinner class="spinner"></mat-spinner>
 </div>
 
 <div *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
