@@ -10,6 +10,7 @@ import { ChartHolderComponent } from './components/chart-holder/chart-holder.com
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '../shared/shared.module';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { LineChartHolderComponent } from './components/line-chart-holder/line-chart-holder.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     HomeDefaultComponent,
     HomeChartComponent,
     ChartHolderComponent,
-    LineChartComponent
+    LineChartComponent,
+    LineChartHolderComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, Input } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -9,7 +9,11 @@ import Annotation from 'chartjs-plugin-annotation';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, OnChanges {
+
+  @Input() data = [];
+  @Input() labels = [];
+
   private newLabel? = 'New label';
 
   constructor() {
@@ -17,22 +21,38 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setInterval( ()=> {
+    // setInterval( ()=> {
 
-      const getRandom = function randomIntFromInterval(min: number, max: number) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-      const rndInt = getRandom(1, 100)
-      this.lineChartData.datasets[0].data.push(rndInt);
-      this.lineChartData.labels?.push("Label " + rndInt);
+    //   const getRandom = function randomIntFromInterval(min: number, max: number) { // min and max included 
+    //     return Math.floor(Math.random() * (max - min + 1) + min)
+    //   }
+    //   const rndInt = getRandom(1, 100)
+    //   this.lineChartData.datasets[0].data.push(rndInt);
+    //   this.lineChartData.labels?.push("Label " + rndInt);
+    //   this.chart?.update();
+    // }, 500);
+  }
+
+  count = 0 ;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes && changes['data'] && changes['data'].currentValue){
+      const {value, label} = changes['data'].currentValue ;
+
+      this.labels = changes['data'].currentValue.map( (item: any) => item.label);
+      this.data = changes['data'].currentValue.map( (item: any) => item.value);
+
+      this.lineChartData.datasets[0].data = this.data;
+      this.lineChartData.labels = this.labels;
+
       this.chart?.update();
-    }, 500);
+    }
   }
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: [],
         label: 'Series A',
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgba(148,159,177,1)',
@@ -66,7 +86,8 @@ export class LineChartComponent implements OnInit {
       //   fill: 'origin',
       // },
     ],
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: [],
+    // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -77,18 +98,23 @@ export class LineChartComponent implements OnInit {
     },
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
+      // xAxis: {
+      //   ticks: {
+      //       maxTicksLimit: 10
+      //   }
+      // },
       y: {
         position: 'left',
       },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red',
-        },
-      },
+      // y1: {
+      //   position: 'right',
+      //   grid: {
+      //     color: 'rgba(255,0,0,0.3)',
+      //   },
+      //   ticks: {
+      //     color: 'red',
+      //   },
+      // },
     },
 
     plugins: {
@@ -142,7 +168,7 @@ export class LineChartComponent implements OnInit {
     event?: ChartEvent;
     active?: object[];
   }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({
@@ -152,7 +178,7 @@ export class LineChartComponent implements OnInit {
     event?: ChartEvent;
     active?: object[];
   }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public hideOne(): void {
