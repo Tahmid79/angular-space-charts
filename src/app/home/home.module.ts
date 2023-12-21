@@ -9,13 +9,15 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartHolderComponent } from './components/chart-holder/chart-holder.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '../shared/shared.module';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 
 @NgModule({
   declarations: [
     HomeDefaultComponent,
     HomeChartComponent,
-    ChartHolderComponent
+    ChartHolderComponent,
+    LineChartComponent
   ],
   imports: [
     CommonModule,
