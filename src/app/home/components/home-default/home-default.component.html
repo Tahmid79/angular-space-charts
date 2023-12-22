@@ -1,10 +1,15 @@
-<mat-toolbar class="toolbar" fxLayout="row">
+<mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutGap="20px">
-      <button mat-icon-button class="example-icon" routerLink="">
+      <button mat-button class="example-icon" routerLink="">
         <span>A</span>
       </button>
-      <button mat-icon-button class="example-icon" routerLink="line">
+      <button mat-button class="example-icon" routerLink="line">
         <span>B</span>
+      </button>
+    </div>
+    <div *ngIf="router.url === '/'">
+      <button mat-raised-button color="primary" class="example-icon">
+        <span>Reload</span>
       </button>
     </div>
   </mat-toolbar>

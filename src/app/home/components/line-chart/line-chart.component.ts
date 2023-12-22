@@ -14,6 +14,7 @@ export class LineChartComponent implements OnInit, OnChanges {
   @Input() data = [];
   @Input() labels = [];
   @Output() animationCompleteEvent = new EventEmitter();
+  @Input() chartType = 'Series A' ;
 
   private newLabel? = 'New label';
 
@@ -42,9 +43,13 @@ export class LineChartComponent implements OnInit, OnChanges {
 
       this.labels = changes['data'].currentValue.map( (item: any) => item.label);
       this.data = changes['data'].currentValue.map( (item: any) => item.value);
-
+      
       this.lineChartData.datasets[0].data = this.data;
       this.lineChartData.labels = this.labels;
+      
+      if(this.chartType !== this.lineChartData.datasets[0].label){
+        this.lineChartData.datasets[0].label = this.chartType;
+      }
 
       this.chart?.update();
     }
@@ -54,7 +59,7 @@ export class LineChartComponent implements OnInit, OnChanges {
     datasets: [
       {
         data: [],
-        label: 'Series A',
+        label: this.chartType,
         backgroundColor: 'rgba(148,159,177,0.2)',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
