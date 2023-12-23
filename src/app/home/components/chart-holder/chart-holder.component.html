@@ -12,8 +12,8 @@
     </div>
     
     <div class="chart-container mat-elevation-z3" >
-        <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout="row wrap">
-            <div fxFlex="30" class="chart-holder">
+        <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout.gt-sm="row wrap" fxLayout.lt-md="column">
+            <div fxFlex.gt-sm="30" class="chart-holder">
                 <app-home-chart (animationCompleteEvent)="handleChartLoad($event)" [barChartData]="data" [yLimit]="limits[idx]" ></app-home-chart>
             </div>
         </ng-container>
