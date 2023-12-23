@@ -114,6 +114,7 @@ export class LineChartHolderComponent implements OnInit {
     this.labels = [];
     this.count = 0;
 
+    this.disconnect();
     this.connection = null;
 
     this.info = {
