@@ -1,18 +1,49 @@
 <!-- <app-line-chart [data]="data" ></app-line-chart> -->
 
-
-<div class="chart-container mat-elevation-z3" fxLayout="row wrap" >
-
-    <div fxFlex="32" class="chart-holder">
-        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="velocityData" chartType="Velocity" ></app-line-chart>
+<div>
+    <div class="reload-button-container" fxLayout="row" fxLayoutAlign="end center">
+        <button [disabled]="false" mat-raised-button color="primary" class="example-icon">
+            <span>Connect</span>
+        </button>
     </div>
+    <div class="chart-container mat-elevation-z3" fxLayout="row wrap" >
 
-    <div fxFlex="32" class="chart-holder">
-        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="altitudeData" chartType="Altitude" ></app-line-chart>
-    </div>
-
-    <div fxFlex="32" class="chart-holder">
-        <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="temperatureData" chartType="Temperature" ></app-line-chart>
+        <div fxFlex="32" class="chart-holder">
+            <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="velocityData" chartType="Velocity" ></app-line-chart>
+        </div>
+    
+        <div fxFlex="32" class="chart-holder">
+            <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="altitudeData" chartType="Altitude" ></app-line-chart>
+        </div>
+    
+        <div fxFlex="32" class="chart-holder">
+            <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="temperatureData" chartType="Temperature" ></app-line-chart>
+        </div>
+        
     </div>
     
+    <div class="status-container">
+        <div class="status-box mat-elevation-z3">
+            <p>{{info.status}}</p>
+        </div>
+    </div>
+    
+    <div class="boolean-container" >
+        <div class="boolean-holder" fxLayoutGap.gt-xs="10px" fxLayout="row wrap" fxLayoutAlign="center center">
+            <div class="mat-elevation-z3">
+                <p>{{ info.ascending ? 'Ascending' : 'Descending' }}</p>
+            </div>
+            <div class="mat-elevation-z3">
+                <p>{{ info.actionNeeded ? 'Action is needed' : 'No action needed' }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-button-container">
+        <div class="action-segment mat-elevation-z3">
+            <button [disabled]="!this.info.actionNeeded" (click)="takeAction()" mat-raised-button color="primary" class="example-icon" (click)="takeAction()">
+                <span>Take Action</span>
+            </button>
+        </div>
+    </div>
 </div>

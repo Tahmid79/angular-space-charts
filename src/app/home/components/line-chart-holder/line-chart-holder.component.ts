@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { webSocket } from "rxjs/webSocket";
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-line-chart-holder',
@@ -15,7 +16,13 @@ export class LineChartHolderComponent implements OnInit {
   labels: any = [];
   count = 0 ;
 
-  constructor(){}
+  info = {
+    status: 'No messages to show',
+    ascending: false,
+    actionNeeded: false
+  }
+
+  constructor(private homeService: HomeService){}
 
   ngOnInit(): void {
     this.showData();
@@ -29,6 +36,7 @@ export class LineChartHolderComponent implements OnInit {
       (msg: any) => {
         console.log('message received: ' + msg);
         this.prepareData(msg);
+        this.prepareInfo(msg);
 
       }, // Called whenever there is a message from the server.
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
@@ -73,8 +81,19 @@ export class LineChartHolderComponent implements OnInit {
     this.count += 0.5;
   }
 
+  prepareInfo(msg: any){
+    // const props = ['IsActionRequired', 'IsAscending', 'StatusMessage'] ;
+    this.info.status = msg['StatusMessage'];
+    this.info.actionNeeded = msg['IsActionRequired'];
+    this.info.ascending = msg['IsAscending'];
+  }
+
   handleChartLoad(event: any){
 
+  }
+
+  takeAction(){
+    this.homeService.takeAction().subscribe( res => {});
   }
 
 }

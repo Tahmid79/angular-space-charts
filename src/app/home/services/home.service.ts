@@ -12,4 +12,10 @@ export class HomeService {
     const url = 'https://webfrontendassignment-isaraerospace.azurewebsites.net/api/SpectrumStatus';
     return this.http.get(url);
   }
+
+  takeAction(){
+    const url = 'https://webfrontendassignment-isaraerospace.azurewebsites.net/api/ActOnSpectrum';
+    return this.http.get(url);
+  }
+  
 }
