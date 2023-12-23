@@ -4,6 +4,12 @@
 </div>
 
 <div *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
+
+    <div class="reload-button-container" fxLayout="row" fxLayoutAlign="end center">
+        <button [disabled]="reloading" mat-raised-button color="primary" class="example-icon" (click)="getData(true)">
+            <span>Reload</span>
+        </button>
+    </div>
     
     <div class="chart-container mat-elevation-z3" >
         <ng-container *ngFor="let data of chartDataArr; index as idx" fxLayout="row wrap">

@@ -64,8 +64,15 @@ export class ChartHolderComponent implements OnInit {
     this.chartDataArr = chartArr ;
   }
 
-  getData(){
-    this.loading = true;
+  reloading = true;
+
+  getData(isReload?: boolean){
+    if(!isReload){
+      this.loading = true;
+    } else{
+      this.reloading = true;
+    }
+
     this.homeService.getChartData().subscribe( (response: any) => {
       const props = ['velocity', 'altitude', 'temperature'];
 
@@ -76,10 +83,12 @@ export class ChartHolderComponent implements OnInit {
 
       const {velocity, altitude, temperature} = response ;
       this.createData(velocity, altitude, temperature);
-      this.loading = false;
 
       // get other data
       this.status = response?.statusMessage;
+
+      this.loading = false;
+      this.reloading = false;
     });
   }
 

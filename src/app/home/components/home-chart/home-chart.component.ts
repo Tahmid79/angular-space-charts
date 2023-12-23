@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -11,11 +11,12 @@ import { HomeService } from '../../services/home.service';
   templateUrl: './home-chart.component.html',
   styleUrls: ['./home-chart.component.scss']
 })
-export class HomeChartComponent implements OnInit, OnDestroy{
+export class HomeChartComponent implements OnInit, OnDestroy, OnChanges{
   @Input() chartLoaded = false;
 
   @Input() yLimit = 100 ;
   @Output() animationCompleteEvent = new EventEmitter();
+  @Input() shouldUpdate = false;
   
   constructor(private homeService: HomeService){}
 
@@ -27,6 +28,13 @@ export class HomeChartComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes && changes['shouldUpdate'] && changes['shouldUpdate'].currentValue){
+      this.chart?.update();
+      this.shouldUpdate = false;
+    }
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -50,8 +58,8 @@ export class HomeChartComponent implements OnInit, OnDestroy{
       },
     },
     animation: {
-      onComplete: ({initial}) => {
-        if (initial){
+      onComplete: (event) => {
+        if (event.initial){
           this.chartLoaded = true;
           this.animationCompleteEvent.emit(true);
         }
