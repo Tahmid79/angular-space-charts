@@ -30,11 +30,11 @@
     
     <div class="boolean-container" >
         <div class="boolean-holder" fxLayoutGap.gt-xs="10px" fxLayout="row wrap" fxLayoutAlign="center center">
-            <div class="mat-elevation-z3">
+            <div class="boolean-box mat-elevation-z3">
                 <p>{{ info.ascending ? 'Ascending' : 'Descending' }}</p>
             </div>
-            <div class="mat-elevation-z3">
-                <p>{{ info.actionNeeded ? 'Action is needed' : 'No action needed' }}</p>
+            <div class="boolean-box mat-elevation-z3" [ngClass]="{'action-class' : info.actionNeeded }">
+                <p class="action-text">{{ info.actionNeeded ? 'Action is needed' : 'No action needed' }}</p>
             </div>
         </div>
     </div>

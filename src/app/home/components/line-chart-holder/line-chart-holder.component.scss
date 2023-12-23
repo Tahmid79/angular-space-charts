@@ -34,7 +34,7 @@
 
     .boolean-holder{
         margin: auto;
-        div{
+        .boolean-box{
             width: 180px !important;
             width: 80%;
             padding: 20px;
@@ -47,6 +47,13 @@
                 font-weight: bold;
             }
         }
+    }
+}
+
+.action-class{
+    background-color: red !important;
+    .action-text{
+        color: white !important;
     }
 }
 
