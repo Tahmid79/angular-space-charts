@@ -50,7 +50,6 @@ export class LineChartHolderComponent implements OnInit {
   disconnect(){
     if(this.connection){
       this.connection.unsubscribe();
-      this.resetData();
     }
   }
 

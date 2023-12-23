@@ -3,7 +3,7 @@
     <mat-spinner class="spinner"></mat-spinner>
 </div>
 
-<div *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
+<div class="bar-chart-container" *ngIf="!loading" [ngClass]="{ 'isHidden' : chartsLoading }" >
 
     <div class="reload-button-container" fxLayout="row" fxLayoutAlign="end center">
         <button [disabled]="reloading" mat-raised-button color="primary" class="example-icon" (click)="getData(true)">
