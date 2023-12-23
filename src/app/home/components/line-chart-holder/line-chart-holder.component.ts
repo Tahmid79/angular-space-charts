@@ -16,6 +16,8 @@ export class LineChartHolderComponent implements OnInit {
   labels: any = [];
   count = 0 ;
 
+  connection: any = null;
+
   info = {
     status: 'No messages to show',
     ascending: false,
@@ -29,10 +31,11 @@ export class LineChartHolderComponent implements OnInit {
   }
 
   showData(){
+    this.resetData();
     const wsUrl = 'wss://webfrontendassignment-isaraerospace.azurewebsites.net/api/SpectrumWS' ;
     const subject = webSocket(wsUrl);
 
-    subject.subscribe(
+    this.connection = subject.subscribe(
       (msg: any) => {
         console.log('message received: ' + msg);
         this.prepareData(msg);
@@ -42,6 +45,13 @@ export class LineChartHolderComponent implements OnInit {
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('complete') // Called when connection is closed (for whatever reason).
     );
+  }
+
+  disconnect(){
+    if(this.connection){
+      this.connection.unsubscribe();
+      this.resetData();
+    }
   }
 
   prepareData(msg: any){
@@ -94,6 +104,24 @@ export class LineChartHolderComponent implements OnInit {
 
   takeAction(){
     this.homeService.takeAction().subscribe( res => {});
+  }
+
+  resetData(){
+    this.data = [];
+    this.velocityData = [];
+    this.altitudeData = [];
+    this.temperatureData = [];
+
+    this.labels = [];
+    this.count = 0;
+
+    this.connection = null;
+
+    this.info = {
+      status: 'No messages to show',
+      ascending: false,
+      actionNeeded: false
+    }
   }
 
 }

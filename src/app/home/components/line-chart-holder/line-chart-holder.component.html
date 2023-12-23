@@ -1,8 +1,11 @@
 <!-- <app-line-chart [data]="data" ></app-line-chart> -->
 
 <div>
-    <div class="reload-button-container" fxLayout="row" fxLayoutAlign="end center">
-        <button [disabled]="false" mat-raised-button color="primary" class="example-icon">
+    <div class="reload-button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button [disabled]="false" (click)="disconnect()" mat-raised-button color="warn" class="example-icon">
+            <span>Disconnect</span>
+        </button>
+        <button [disabled]="false" (click)="showData()" mat-raised-button color="primary" class="example-icon">
             <span>Connect</span>
         </button>
     </div>
@@ -19,7 +22,6 @@
         <div fxFlex="32" class="chart-holder">
             <app-line-chart (animationCompleteEvent)="handleChartLoad($event)" [data]="temperatureData" chartType="Temperature" ></app-line-chart>
         </div>
-        
     </div>
     
     <div class="status-container">
